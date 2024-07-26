@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+    <title>{{ title }} - Remove Background</title>
+    {% else %}
+    <title>Remove Background</title>
+    {% endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/dist/css/output.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/css/styles.css') }}" />
+</head>
+
+<body>
+    {% block content %} {% endblock %}
+    <script src="{{url_for('static', filename='script/javascript.js')}}"></script>
+</body>
+
+</html>

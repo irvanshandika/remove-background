@@ -1,0 +1,11 @@
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "python app.py",
+    "watch": "npx tailwindcss -i ./static/src/css/styles.css -o ./static/src/dist/css/output.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
+  }
+}
