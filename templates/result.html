@@ -1,4 +1,5 @@
-{% extends "layout.html" %} {% block content %}
+{% extends "layout.html" %}
+{% block content %}
 <div class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-2xl">
         <h1 class="text-2xl font-bold mb-4 text-center">Result</h1>
@@ -12,9 +13,41 @@
                 <img src="{{ processed_file }}" alt="Processed Image" class="w-full rounded-lg">
             </div>
         </div>
-        <div class="mt-4 text-center">
-            <a href="{{ url_for('download_file', filename='removed_' + filename) }}"
-                class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600">Download</a>
+        <div class="flex flex-col justify-center items-center">
+            <h2 class="text-xl mb-2">Download Options</h2>
+            <div class="relative inline-block text-left" x-data="{ open: false }">
+                <div>
+                    <button @click="open = !open" type="button"
+                        class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        id="options-menu" aria-haspopup="true" aria-expanded="true">
+                        Download Options
+                        <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                            fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+                <div x-show="open" @click.away="open = false"
+                    class="origin-bottom-right absolute right-0 bottom-10 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    x-cloak>
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <a href="{{ url_for('download_file', filename=filename, format='png') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Download as
+                            PNG</a>
+                        <a href="{{ url_for('download_file', filename=filename, format='jpg') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Download as
+                            JPG</a>
+                        <a href="{{ url_for('download_file', filename=filename, format='jpeg') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Download as
+                            JPEG</a>
+                        <a href="{{ url_for('download_file', filename=filename, format='webp') }}"
+                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Download as
+                            WEBP</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
